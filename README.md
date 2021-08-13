@@ -9,7 +9,9 @@ You can start the notebooks container with a command like: docker run --rm -p 88
 
 ## Dataset
 
+The dataset contains data about disasters and messages people send requesting or offering something.
 
+It also contains some classifications for the messages.
 
 ## Project Organization
 
@@ -30,3 +32,5 @@ The container folder contains the Dockerfile and the requirements.txt used to st
 ## Acknowledgments
 
 -Udacity, for providing the ideia and the notebooks for the project.
+
+-Figure Eight Inc. for providing the dataset.
