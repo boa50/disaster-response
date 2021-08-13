@@ -17,6 +17,8 @@ The dataset folder contains the .csv data used for the analysis and a .db databa
 
 The models folder contains the machine learning saved models.
 
+The app folder has the app's files for the web project. It was based on the Udacity's Data Scientist Nanodegree Program.
+
 The notebooks folder contains jupyter notebooks used to analyze the datasets.
 
 These notebooks were copied from the Udacity Data Scientist Nanodegree Program.
