@@ -15,6 +15,8 @@ You can start the notebooks container with a command like: docker run --rm -p 88
 
 The dataset folder contains the .csv data used for the analysis and a .db database used to be the output of the preprocessing data step.
 
+The models folder contains the machine learning saved models.
+
 The notebooks folder contains jupyter notebooks used to analyze the datasets.
 
 These notebooks were copied from the Udacity Data Scientist Nanodegree Program.
