@@ -1,7 +1,5 @@
 # Disaster Response Analysis
 
-## Summary of results
-
 
 ## Installation
 
