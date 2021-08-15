@@ -1,4 +1,5 @@
 import json
+import re
 import plotly
 import pandas as pd
 import pickle
@@ -8,7 +9,7 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import Bar, Pie
 from sqlalchemy import create_engine
 
 
@@ -39,32 +40,98 @@ model = pickle.load(open('./models/best_model.pkl', 'rb'))
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
-    
-    # create visuals
-    # TODO: Below is an example - modify to create your own visuals
-    graphs = [
-        {
-            'data': [
-                Bar(
-                    x=genre_names,
-                    y=genre_counts
-                )
-            ],
 
-            'layout': {
-                'title': 'Distribution of Message Genres',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
-                }
+    # Comparison between requests and offers
+    reqests_offers_sums = df[['request', 'offer']].sum()
+
+    reqests_offers_labels = reqests_offers_sums.keys()
+    reqests_offers_values = reqests_offers_sums.values
+
+    reqests_offers_chart = {
+        'data': [
+            Pie(
+                labels=reqests_offers_labels,
+                values=reqests_offers_values
+            )
+        ],
+        'layout': {
+            'title': 'Quantity of Requests x Offers'
+        }
+    }
+
+    # Most requested things
+    df_requests = df[df['request'] == 1]
+
+    dropped_columns = ['id', 'message', 'original', 'genre', 'related', 'request', 'offer', 'direct_report']
+    for column in df.columns:
+        if re.search('related', column) is not None:
+            dropped_columns.append(column)
+
+    bars_qtd = 7
+    idx = bars_qtd - 1
+
+    requests_sums = df_requests.drop(columns=dropped_columns).sum()
+    requests_sums_sorted = requests_sums.sort_values(ascending=False)
+
+    requests_labels = requests_sums_sorted[:idx].keys().to_list()
+    requests_values = list(requests_sums_sorted[:idx].values)
+
+    requests_labels.append('ohters')
+    requests_values.append(requests_sums_sorted[idx:].sum())
+
+    requests_chart = {
+        'data': [
+            Bar(
+                x=requests_labels,
+                y=requests_values
+            )
+        ],
+        'layout': {
+            'title': 'Distribution of Request Messages',
+            'yaxis': {
+                'title': "Count"
+            },
+            'xaxis': {
+                'title': "Type of Request"
             }
         }
-    ]
+    }
+
+    # Most offered things
+    df_offers = df[df['offer'] == 1]
+
+    bars_qtd = 7
+    idx = bars_qtd - 1
+
+    offers_sums = df_offers.drop(columns=dropped_columns).sum()
+    offers_sums_sorted = offers_sums.sort_values(ascending=False)
+
+    offers_labels = offers_sums_sorted[:idx].keys().to_list()
+    offers_values = list(offers_sums_sorted[:idx].values)
+
+    offers_labels.append('ohters')
+    offers_values.append(offers_sums_sorted[idx:].sum())
+
+    offers_chart = {
+        'data': [
+            Bar(
+                x=offers_labels,
+                y=offers_values
+            )
+        ],
+        'layout': {
+            'title': 'Distribution of Offer Messages',
+            'yaxis': {
+                'title': "Count"
+            },
+            'xaxis': {
+                'title': "Type of Offer"
+            }
+        }
+    }
+    
+    # create visuals
+    graphs = [reqests_offers_chart,requests_chart,offers_chart]
     
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
