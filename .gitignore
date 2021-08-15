@@ -1,3 +1,4 @@
 notebooks_container_start.sh
 app/run_container.sh
+app/__pycache__/
 notebooks/.ipynb_checkpoints/
