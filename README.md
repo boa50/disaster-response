@@ -9,6 +9,8 @@ There are Dockerfiles inside the notebook/container and app folders.
 
 There are example commands, notebooks\_container\_start.sh.sample and app/run_container.sh.sample files, that shows how to run the respective containers.
 
+The container of the app will start the server at the localhost at the port 3001.
+
 There are requiriments.txt files toghether with the Dockerfiles, if you want to run the code a different way.
 
 ## Dataset
