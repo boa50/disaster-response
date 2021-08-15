@@ -3,7 +3,13 @@
 
 ## Installation
 
-You can start the notebooks container with a command like: docker run --rm -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes -v "${PWD}":/home/jovyan/work IMAGE_NAME
+You can rou the project using Docker containers.
+
+There are Dockerfiles inside the notebook/container and app folders.
+
+There are example commands, notebooks\_container\_start.sh.sample and app/run_container.sh.sample files, that shows how to run the respective containers.
+
+There are requiriments.txt files toghether with the Dockerfiles, if you want to run the code a different way.
 
 ## Dataset
 
@@ -13,19 +19,15 @@ It also contains some classifications for the messages.
 
 ## Project Organization
 
-The dataset folder contains the .csv data used for the analysis and a .db database used to be the output of the preprocessing data step.
-
-The models folder contains the machine learning saved models.
-
 The app folder has the app's files for the web project. It was based on the Udacity's Data Scientist Nanodegree Program.
+
+The app/dataset folder contains the .csv data used for the analysis and a .db database used to be the output of the preprocessing data step.
+
+The app/models folder contains the machine learning saved models.
 
 The notebooks folder contains jupyter notebooks used to analyze the datasets.
 
 These notebooks were copied from the Udacity Data Scientist Nanodegree Program.
-
-The notebooks folder has a container folder too.
-
-The container folder contains the Dockerfile and the requirements.txt used to start the container.
 
 ## Acknowledgments
 
