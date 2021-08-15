@@ -65,7 +65,6 @@ def clean_data(df):
     # Convert the categories values to numbers
     for column in categories:
         categories[column] = categories[column].str[-1].astype(int)
-        # categories[column] = categories[column].astype(int)
 
     # Replace the old categories column with the new ones
     df.drop('categories', axis=1, inplace=True)

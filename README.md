@@ -9,7 +9,11 @@ There are Dockerfiles inside the notebook/container and app folders.
 
 There are example commands, notebooks\_container\_start.sh.sample and app/run_container.sh.sample files, that shows how to run the respective containers.
 
-To preprocess the dataset and insert it into the database file you could run a comand like bash -c "cd data && python process_data.py messages.csv categories.csv DisasterResponse.db". If you are running the app inside the container you could use the **exec** command.
+To preprocess the dataset and insert it into the database file you could run a comand like bash -c "cd data && python process\_data.py messages.csv categories.csv DisasterResponse.db".
+
+To train the classifier and save it into a pickle file you could run a comand like bash -c "cd models && python train\_classifier.py ../data/DisasterResponse.db best_model.pkl". 
+
+If you are running the app inside the container you could use the **exec** command to run the above commands.
 
 The container of the app will start the server at the localhost at the port 3001.
 
