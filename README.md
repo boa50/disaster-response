@@ -1,5 +1,18 @@
 # Disaster Response Analysis
 
+This project tries to analyze data of text messages about real life disasters.
+
+The idea is to filter the messages according to some categories like: food, water, etc.
+
+This is important because, during a disaster, a lot of messages are sent and many of them are not very useful, so we tried to take the meaning of the messages based on a Machine Learning algorithm.
+
+Some charts were presented to try to identify the categories with more necessity of help.
+
+The messages show that, during a disaster, much more messages about requests are received then messages of people offering help. This could be a problem, because sometimes is very difficult to connect these people to help each other.
+
+This dataset has a problem about the imbalanced values of the categories, making difficlut to classify some of the categories.
+
+Because of this the F1 score was chosen to be the most important metric for the algorithm, to make the right decisions when the categories are true more important. If we chose the accuracy to be the most important metric, the model could say that all categories are false for all sentences and still has a good accuracy.
 
 ## Installation
 
@@ -24,6 +37,8 @@ There are requiriments.txt files toghether with the Dockerfiles, if you want to 
 The dataset contains data about disasters and messages people send requesting or offering something.
 
 It also contains some classifications for the messages.
+
+The messages and the classifications of the messages are divided into two .csv files (messages.csv and categories.csv)
 
 ## Project Organization
 
