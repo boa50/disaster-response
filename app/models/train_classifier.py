@@ -5,7 +5,12 @@ import pickle
 
 import nltk
 nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
 from nltk import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+import string
 
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -47,7 +52,12 @@ def tokenize(text):
     - tokens: The tokens generated based on the text
     """
 
-    tokens = word_tokenize(text)
+    lemmatizer = WordNetLemmatizer()
+    stop_words = stopwords.words('english')
+
+    tokens = word_tokenize(text.lower())
+    tokens = [lemmatizer.lemmatize(token) for token in tokens if not
+              (token in stop_words or token in string.punctuation)]
 
     return tokens
 
